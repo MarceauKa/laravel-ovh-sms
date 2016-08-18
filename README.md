@@ -4,15 +4,15 @@
 
 This is an unofficial integration of the [php-ovh-sms](https://github.com/ovh/php-ovh-sms) library for Laravel 5.  
 
-- OVH SMS plans & pricing: [Official site](https://www.ovhtelecom.fr/sms/)
-- Getting credentials: [OVH Api Explorer](https://api.ovh.com/createToken/index.cgi?GET=/sms&GET=/sms/*&PUT=/sms/*&DELETE=/sms/*&POST=/sms/*)
-- OVH SMS Api doc: [PHP OVH SMS](https://github.com/ovh/php-ovh-sms/blob/master/README.md)
+- Original [PHP OVH SMS library](https://github.com/ovh/php-ovh-sms/blob/master/README.md)
+- Plans & pricing (20 free credits) on the [official site](https://www.ovhtelecom.fr/sms/)
+- Getting credentials on the [OVH Api Explorer](https://api.ovh.com/createToken/index.cgi?GET=/sms&GET=/sms/*&PUT=/sms/*&DELETE=/sms/*&POST=/sms/*)
 
 ## Installation
 
 Require this package with composer:  
 ```bash
-composer require akibatech/laravel-ovh-sms
+composer require akibatech/laravel-ovh-sms dev-master
 ```
 
 After updating composer, add the ServiceProvider to the **providers** array in config/app.php:  
@@ -68,25 +68,32 @@ $sms->setDeliveryDate(new DateTime("2018-02-25 18:40:00"));
 $sms->send("Hello world!");
 ```
 
-## Api
+### Package API workflow
 
-This package give you an access to a ready to use **Ovh\Sms\SmsApi** instance with your configured credentials and you default sms account (if given).  
+This package give you an access to a ready to use **Ovh\Sms\SmsApi** instance with your configured credentials and your default sms account (if present).  
 It also offer some helpers over the original Api.  
 
-### Helpers
+```php
+$client = app('ovhsms');
 
-**newMessage( array|string $to, bool $marketing )** and **newMarketingMessage( array|string $to )** are useful to give a new **Message** instance (Ovh\Sms\Message).  
+// Prepare a new SMS instance and return it.
+$sms = $client->newMessage('the phone number', false);
+$sms->addReceiver("+33601020304"); // Add a second receiver...
+$sms->send('Hi!');
 
-**sendMessage( array|string $to, string $message )** and **sendMarketingMessage( array|string $to, string $message)** are useful to send directly a message.
-  
-**getClient( void )** returns the **Ovh\Sms\SmsApi** instance.
+// Same as above but the SMS is marked as a marketing message.
+$sms = $client->newMarketingMessage($phone); // Alias of newMessage($phone, true);
+$sms->send('Order confirm #52');
 
-### Original Api
+// Attach many receivers
+$sms = $client->newMessage(['phone1', 'phone2'], ...);
+$sms->send('hi guys');
 
-Otherwise, you can access the rest of the **SmsApi**.  
-You can find the doc on the [official repo](https://github.com/ovh/php-ovh-sms/blob/master/README.md).
-
-All original methods are called dynamically, you don't need to **getClient**.
+// Send directly the message
+$client->sendMessage($phone, 'my message');
+// Or
+$client->sendMarketingMessage($phone, 'super price this sunday!');
+```
 
 ## Getting credentials
 
@@ -106,9 +113,8 @@ Config key is:
 ## TODO & Ideas
 
 - Events (message sent, ...)
-- More helpers
-- Tests ?
-- Idea: integration of https://github.com/giggsey/libphonenumber-for-php to help parsing phone numbers into international format
+- Provide laravel-ovh as a driver for the new Laravel 5.3 notification system.
+- Idea: integration of https://github.com/giggsey/libphonenumber-for-php to help parsing phone numbers into international format.
 
 ## Licence
 
