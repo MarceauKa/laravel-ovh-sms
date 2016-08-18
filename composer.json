@@ -1,0 +1,22 @@
+{
+    "name": "akibatech/laravel-ovh-sms",
+    "description": "The OVH Sms Api integration for Laravel 5.",
+    "keywords": ["laravel", "laravel5", "ovh", "sms", "api"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "MarceauKa",
+            "email": "marceau@casals.fr"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": "5.1.*|5.2.*|5.3.*",
+        "ovh/php-ovh-sms": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Akibatech\\Ovhsms\\": "src/"
+        }
+    }
+}
