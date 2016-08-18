@@ -1,12 +1,20 @@
 # Laravel OVH SMS
 
-**Work in progress**
-
 This is an unofficial integration of the [php-ovh-sms](https://github.com/ovh/php-ovh-sms) library for Laravel 5.  
 
 - Original [PHP OVH SMS library](https://github.com/ovh/php-ovh-sms/blob/master/README.md)
 - Plans & pricing (20 free credits) on the [official site](https://www.ovhtelecom.fr/sms/)
 - Getting credentials on the [OVH Api Explorer](https://api.ovh.com/createToken/index.cgi?GET=/sms&GET=/sms/*&PUT=/sms/*&DELETE=/sms/*&POST=/sms/*)
+
+## Summary
+
+- [Installation](#installation)
+- [Usage](#usage)
+    - [Package API workflow](#package-api-workflow)
+    - [Original API workflow](#original-api-workflow)
+- [Getting credentials](#getting-credentials)
+- [Support](#support)
+- [Licence](#licence)
 
 ## Installation
 
@@ -30,7 +38,7 @@ Then, you should publish the **laravel-ovh-sms** to your config folder with the 
 php artisan vendor:publish --provider="Akibatech\Ovhsms\ServiceProvider"
 ```
 
-## Basic usage
+## Usage
 
 Send a message (using Facade) anywhere in your app:
 ```php
@@ -100,22 +108,23 @@ $sms->send("Hello world!");
 You can get your credentials from the [official API Explorer site](https://api.ovh.com/createToken/index.cgi?GET=/sms&GET=/sms/*&PUT=/sms/*&DELETE=/sms/*&POST=/sms/*]) at OVH.  
 
 Once your credentials in hands, you need to put them in **config/laravel-ovh-sms.php**.  
-For convenience, you can put them in your .env file.  
-Keys are:
+For convenience, you can put them in your .env file.    
+
+Config keys are:
 - OVHSMS_APP_KEY => your application key
 - OVHSMS_APP_SECRET => your application secret
 - OVHSMS_OVHSMS_CONSUMER_KEY => your consumer key
 - OVHSMS_ENDPOINT => your endpoint (defaults to ovh-eu)
 
-If you want to, you can define your default sms account (formated like "sms-LLXXXXX-X").  
+If you want to, you can define your default sms account (formated like "sms-LLXXXXX-X").    
+
 Config key is:
 - OVHSMS_ACCOUNT => your sms account ID
 
-## TODO & Ideas
+## Support
 
-- Events (message sent, ...)
-- Provide laravel-ovh as a driver for the new Laravel 5.3 notification system.
-- Idea: integration of https://github.com/giggsey/libphonenumber-for-php to help parsing phone numbers into international format.
+Issues related to **ovh/php-ovh-sms** should be posted on [its own repo](https://github.com/ovh/php-ovh-sms).  
+For this Laravel package, feel free to post your issues in the issues section.  
 
 ## Licence
 
