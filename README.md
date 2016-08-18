@@ -97,9 +97,9 @@ $sms->send("Hello world!");
 
 ## Getting credentials
 
-You can get your credentials from the (official API Explorer site)[https://api.ovh.com/createToken/index.cgi?GET=/sms&GET=/sms/*&PUT=/sms/*&DELETE=/sms/*&POST=/sms/*] at OVH.  
+You can get your credentials from the [official API Explorer site](https://api.ovh.com/createToken/index.cgi?GET=/sms&GET=/sms/*&PUT=/sms/*&DELETE=/sms/*&POST=/sms/*]) at OVH.  
 
-Once your credentials in hands, your can put them in **config/laravel-ovh-sms.php**.  
+Once your credentials in hands, you need to put them in **config/laravel-ovh-sms.php**.  
 For convenience, you can put them in your .env file.  
 Keys are:
 - OVHSMS_APP_KEY => your application key
