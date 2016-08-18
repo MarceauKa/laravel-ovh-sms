@@ -19,6 +19,5 @@
             "Akibatech\\Ovhsms\\": "src/"
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": false
+    "minimum-stability": "dev"
 }
