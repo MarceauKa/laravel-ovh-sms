@@ -4,7 +4,7 @@ namespace Akibatech\Notifications;
 
 use Akibatech\Ovhsms\OvhSms;
 use Illuminate\Notifications\Notification;
-use Akibatech\Notifications\OvhSmsMessage;
+use Akibatech\Ovhsms\Notifications\OvhSmsMessage;
 
 /**
  * Class OvhSmsChannel
@@ -56,7 +56,7 @@ class OvhSmsChannel
 
         $sms = $this->client->newMessage($to);
 
-        $sms->send($message);
+        $sms->send($message->content);
     }
 
     //-------------------------------------------------------------------------

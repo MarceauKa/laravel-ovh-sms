@@ -12,6 +12,8 @@ This is an unofficial integration of the [php-ovh-sms](https://github.com/ovh/ph
 - [Usage](#usage)
     - [Package API workflow](#package-api-workflow)
     - [Original API workflow](#original-api-workflow)
+- [Using with Laravel Notifications](#using-with-laravel-notifications)
+    - [Example notification](#example-notification)
 - [Getting credentials](#getting-credentials)
 - [Support](#support)
 - [Licence](#licence)
@@ -102,6 +104,65 @@ $sms->setIsMarketing(false);
 $sms->setDeliveryDate(new DateTime("2018-02-25 18:40:00"));
 $sms->send("Hello world!");
 ```
+
+## Using with Laravel Notifications
+
+This package can be used as a driver for Laravel Notifications (Laravel >= 5.3).  
+
+### Example notification
+
+Here's a simple notification example.  
+
+```php
+namespace App\Notifications;
+
+use Akibatech\Ovhsms\Notifications\OvhSmsChannel;
+use Akibatech\Ovhsms\Notifications\OvhSmsMessage;
+use Illuminate\Notifications\Notification;
+
+class ExampleNotification extends Notification
+{
+    /**
+     * Notification via OvhSmsChannel.
+     */
+    public function via($notifiable)
+    {
+        return [OvhSmsChannel::class];
+    }
+
+    /**
+     * Your notification must implements "toOvh()"
+     */
+    public function toOvh($notifiable)
+    {
+    	return (new OvhSmsMessage('A new invoice was paid! Amount: $9.00'));
+    }
+}
+```
+
+Also, your Notifiable model must implements **routeNotificationForOvh()**.  
+
+```php
+namespace App;
+
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class User extends Authenticatable
+{
+    use Notifiable;
+    
+    /**
+     * Returns the user's phone number.
+     */
+    public function routeNotificationForOvh()
+    {
+        return $this->phone; // Ex: +33611223344
+    }
+}
+```
+
+Nice, you're ready to use the new Laravel Notifications system.
 
 ## Getting credentials
 
