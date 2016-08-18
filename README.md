@@ -55,22 +55,21 @@ It also offer some helpers over the original Api.
 $client = app('ovhsms');
 
 // Prepare a new SMS instance and return it.
-$sms = $client->newMessage('the phone number', false);
-$sms->addReceiver("+33601020304"); // Add a second receiver...
+$sms = $client->newMessage('the phone number');
 $sms->send('Hi!');
 
 // Same as above but the SMS is marked as a marketing message.
 $sms = $client->newMarketingMessage($phone); // Alias of newMessage($phone, true);
-$sms->send('Order confirm #52');
+$sms->send('Hello!');
 
 // Attach many receivers
 $sms = $client->newMessage(['phone1', 'phone2'], ...);
-$sms->send('hi guys');
+$sms->send('Hi guys!');
 
 // Send directly the message
-$client->sendMessage($phone, 'my message');
+$client->sendMessage($phone, 'Hello!');
 // Or
-$client->sendMarketingMessage($phone, 'super price this sunday!');
+$client->sendMarketingMessage($phone, 'Super price this sunday!');
 ```
 
 ### Original API workflow
