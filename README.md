@@ -45,32 +45,10 @@ public function myControllerAction(Akibatech\Ovhsms\OvhSms $client)
 }
 ```
 
-### Original API workflow
-
-If you don't want to use ready-to-use helpers, you can follow the original workflow. Here's an example:  
-```php
-// Retrieve OVH SMS instance
-$ovhsms = app('ovhsms'); // Or Ovhsms::getClient();
-
-// Get available SMS accounts
-$accounts = $ovhsms->getAccounts();
-
-// Set the account you will use
-$ovhsms->setAccount($accounts[0]);
-
-// Create a new message that will allow the recipient to answer (to FR receipients only)
-$sms = $ovh->createMessage(true);
-$sms->addReceiver("+33601020304");
-$sms->setIsMarketing(false);
-
-// Plan to send it in the future
-$sms->setDeliveryDate(new DateTime("2018-02-25 18:40:00"));
-$sms->send("Hello world!");
-```
-
 ### Package API workflow
 
-This package give you an access to a ready to use **Ovh\Sms\SmsApi** instance with your configured credentials and your default sms account (if present).  
+This package give you an access to a ready to use **Ovh\Sms\SmsApi** instance with your configured credentials and your default sms account (if present).
+
 It also offer some helpers over the original Api.  
 
 ```php
@@ -95,10 +73,34 @@ $client->sendMessage($phone, 'my message');
 $client->sendMarketingMessage($phone, 'super price this sunday!');
 ```
 
+### Original API workflow
+
+If you don't want to use ready-to-use helpers, you can follow the original workflow. Here's an example:  
+```php
+// Retrieve OVH SMS instance
+$ovhsms = app('ovhsms'); // Or Ovhsms::getClient();
+
+// Get available SMS accounts
+$accounts = $ovhsms->getAccounts();
+
+// Set the account you will use
+$ovhsms->setAccount($accounts[0]);
+
+// Create a new message that will allow the recipient to answer (to FR receipients only)
+$sms = $ovh->createMessage(true);
+$sms->addReceiver("+33601020304");
+$sms->setIsMarketing(false);
+
+// Plan to send it in the future
+$sms->setDeliveryDate(new DateTime("2018-02-25 18:40:00"));
+$sms->send("Hello world!");
+```
+
 ## Getting credentials
 
-You can generate your credentials from the (official API Explorer site)[https://api.ovh.com/createToken/index.cgi?GET=/sms&GET=/sms/*&PUT=/sms/*&DELETE=/sms/*&POST=/sms/*] at OVH.
-Once your credentials in hands, your can put them in **config/laravel-ovh-sms.php**. 
+You can get your credentials from the (official API Explorer site)[https://api.ovh.com/createToken/index.cgi?GET=/sms&GET=/sms/*&PUT=/sms/*&DELETE=/sms/*&POST=/sms/*] at OVH.  
+
+Once your credentials in hands, your can put them in **config/laravel-ovh-sms.php**.  
 For convenience, you can put them in your .env file.  
 Keys are:
 - OVHSMS_APP_KEY => your application key
