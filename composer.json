@@ -12,12 +12,13 @@
     "require": {
         "php": ">=5.5.9",
         "illuminate/support": "5.1.*|5.2.*|5.3.*",
-        "ovh/php-ovh-sms": "dev-master#96fb25947d30b6dac58c87638e09799870a4841c"
+        "ovh/php-ovh-sms": "dev-master@dev"
     },
     "autoload": {
         "psr-4": {
             "Akibatech\\Ovhsms\\": "src/"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
