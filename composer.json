@@ -18,5 +18,7 @@
         "psr-4": {
             "Akibatech\\Ovhsms\\": "src/"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": false
 }
