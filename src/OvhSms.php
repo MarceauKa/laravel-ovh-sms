@@ -27,6 +27,11 @@ class OvhSms
     private $default_account;
 
     /**
+     * @var string|null
+     */
+    private $user_login;
+
+    /**
      * @var SmsApi|null
      */
     private $client;
@@ -58,6 +63,7 @@ class OvhSms
         }
 
         $this->loadDefaultAccount()
+             ->loadUserLogin()
              ->createClient();
     }
 
@@ -102,6 +108,26 @@ class OvhSms
     //-------------------------------------------------------------------------
 
     /**
+     * Load the SMS user login from config.
+     *
+     * @param   void
+     * @return  self
+     */
+    private function loadUserLogin()
+    {
+        $user_id = config('laravel-ovh-sms.sms_user_login', null);
+
+        if ($user_id)
+        {
+            $this->user_login = $user_id;
+        }
+
+        return $this;
+    }
+
+    //-------------------------------------------------------------------------
+
+    /**
      * Create the SmsApi client.
      *
      * @param   void
@@ -129,6 +155,12 @@ class OvhSms
             }
 
             $this->client->setAccount($this->default_account);
+        }
+
+        // A user is configured
+        if($this->user_login)
+        {
+            $this->client->setUser($this->user_login);
         }
 
         return $this;
