@@ -166,7 +166,7 @@ Nice, you're ready to use the new Laravel Notifications system.
 
 ## Getting credentials
 
-You can get your credentials from the [official API Explorer site](https://api.ovh.com/createToken/index.cgi?GET=/sms&GET=/sms/*&PUT=/sms/*&DELETE=/sms/*&POST=/sms/*]) at OVH.  
+You can get your credentials from the [official API Explorer site](https://api.ovh.com/createToken/index.cgi?GET=/sms&GET=/sms/*&PUT=/sms/*&DELETE=/sms/*&POST=/sms/*) at OVH.  
 
 Once your credentials in hands, you need to put them in **config/laravel-ovh-sms.php**.  
 For convenience, you can put them in your .env file.    
@@ -174,13 +174,18 @@ For convenience, you can put them in your .env file.
 Config keys are:
 - OVHSMS_APP_KEY => your application key
 - OVHSMS_APP_SECRET => your application secret
-- OVHSMS_OVHSMS_CONSUMER_KEY => your consumer key
+- OVHSMS_CONSUMER_KEY => your consumer key
 - OVHSMS_ENDPOINT => your endpoint (defaults to ovh-eu)
 
-If you want to, you can define your default sms account (formated like "sms-LLXXXXX-X").    
+If you want to, you can define your default sms account (formatted like "sms-LLXXXXX-X").    
 
 Config key is:
 - OVHSMS_ACCOUNT => your sms account ID
+
+You can also define an API user ID :
+
+Config key is:
+- OVHSMS_USER_LOGIN => your API user ID
 
 ## Support
 

@@ -38,4 +38,9 @@ return [
      */
     'sms_account'  => env('OVHSMS_ACCOUNT', 'sms'),
 
+    /**
+     * Your API user login
+     */
+    'sms_user_login' => env('OVHSMS_USER_LOGIN')
+
 ];
