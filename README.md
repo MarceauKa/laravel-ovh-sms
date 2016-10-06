@@ -187,6 +187,11 @@ Optional keys:
 Issues related to **ovh/php-ovh-sms** should be posted on [its own repo](https://github.com/ovh/php-ovh-sms).  
 For this Laravel package, feel free to post your issues in the issues section.  
 
+## Contributors
+
+- [MarceauKa](https://github.com/AkibaTech)
+- [bastien09](https://github.com/bastien09)
+
 ## Licence
 
 MIT
