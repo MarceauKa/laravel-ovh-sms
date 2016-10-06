@@ -177,15 +177,10 @@ Config keys are:
 - OVHSMS_CONSUMER_KEY => your consumer key
 - OVHSMS_ENDPOINT => your endpoint (defaults to ovh-eu)
 
-If you want to, you can define your default sms account (formatted like "sms-LLXXXXX-X").    
-
-Config key is:
-- OVHSMS_ACCOUNT => your sms account ID
-
-You can also define an API user ID :
-
-Config key is:
+Optional keys:  
+- OVHSMS_ACCOUNT => your sms account ID (formatted like "sms-LLXXXXX-X")
 - OVHSMS_USER_LOGIN => your API user ID
+- OVHSMS_SENDER => phone number or alphanumeric sender designation
 
 ## Support
 

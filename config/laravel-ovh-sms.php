@@ -41,6 +41,11 @@ return [
     /**
      * Your API user login
      */
-    'sms_user_login' => env('OVHSMS_USER_LOGIN')
+    'sms_user_login' => env('OVHSMS_USER_LOGIN'),
+
+    /**
+     * Your default SMS sender
+     */
+    'sms_default_sender' => env('OVHSMS_SENDER')
 
 ];
