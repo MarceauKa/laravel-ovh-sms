@@ -32,6 +32,11 @@ class OvhSms
     private $user_login;
 
     /**
+     * @var string|null
+     */
+    private $default_sender;
+
+    /**
      * @var SmsApi|null
      */
     private $client;
@@ -64,6 +69,7 @@ class OvhSms
 
         $this->loadDefaultAccount()
              ->loadUserLogin()
+             ->loadDefaultSender()
              ->createClient();
     }
 
@@ -128,6 +134,26 @@ class OvhSms
     //-------------------------------------------------------------------------
 
     /**
+     * Load the default sender.
+     *
+     * @param   void
+     * @return  self
+     */
+    private function loadDefaultSender()
+    {
+        $default_sender = config('laravel-ovh-sms.sms_default_sender', null);
+
+        if ($default_sender)
+        {
+            $this->default_sender = $default_sender;
+        }
+
+        return $this;
+    }
+
+    //-------------------------------------------------------------------------
+
+    /**
      * Create the SmsApi client.
      *
      * @param   void
@@ -163,6 +189,19 @@ class OvhSms
             $this->client->setUser($this->user_login);
         }
 
+        // A sender is configured
+        if($this->default_sender)
+        {
+            // Get available senders from API
+            $senders = $this->client->getSenders();
+
+            // If given sender does not exist.
+            if(in_array($this->default_sender, $senders) === false)
+            {
+                throw new \RuntimeException("Default SMS sender does not exist.");
+            }
+        }
+
         return $this;
     }
 
@@ -193,6 +232,11 @@ class OvhSms
     {
         $message = $this->client->createMessage($allowing_answer);
         $message->setIsMarketing($marketing);
+
+        if($this->default_sender)
+        {
+            $message->setSender($this->default_sender);
+        }
 
         // Convert receiver to an array of receivers.
         $to = is_array($to) ? $to : [$to];
