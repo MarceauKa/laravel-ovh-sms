@@ -1,10 +1,9 @@
 <?php
 
-namespace Akibatech\Notifications;
+namespace Akibatech\Ovhsms\Notifications;
 
 use Akibatech\Ovhsms\OvhSms;
 use Illuminate\Notifications\Notification;
-use Akibatech\Ovhsms\Notifications\OvhSmsMessage;
 
 /**
  * Class OvhSmsChannel
