@@ -22,7 +22,7 @@ This is an unofficial integration of the [php-ovh-sms](https://github.com/ovh/ph
 
 Require this package with composer:  
 ```bash
-composer require akibatech/laravel-ovh-sms dev-master
+composer require akibatech/laravel-ovh-sms
 ```
 
 After updating composer, add the ServiceProvider to the **providers** array in config/app.php:  
