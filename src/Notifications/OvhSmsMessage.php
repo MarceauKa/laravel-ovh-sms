@@ -16,8 +16,6 @@ class OvhSmsMessage
      */
     public $content;
 
-    //-------------------------------------------------------------------------
-
     /**
      * Create a new message instance.
      *
@@ -28,8 +26,6 @@ class OvhSmsMessage
     {
         $this->content = $content;
     }
-
-    //-------------------------------------------------------------------------
 
     /**
      * Set the message content.
@@ -43,6 +39,4 @@ class OvhSmsMessage
 
         return $this;
     }
-
-    //-------------------------------------------------------------------------
 }

@@ -21,8 +21,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     protected $configName = 'laravel-ovh-sms';
 
-    //-------------------------------------------------------------------------
-
     /**
      * Register the service provider.
      *
@@ -44,8 +42,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->app->alias('ovhsms', OvhSms::class);
     }
 
-    //-------------------------------------------------------------------------
-
     /**
      * Bootstrap the application events.
      *
@@ -57,6 +53,4 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
         $this->publishes([$configPath => config_path($this->configName . '.php')], 'config');
     }
-
-    //-------------------------------------------------------------------------
 }

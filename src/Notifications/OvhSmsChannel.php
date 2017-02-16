@@ -18,8 +18,6 @@ class OvhSmsChannel
      */
     private $client;
 
-    //-------------------------------------------------------------------------
-
     /**
      * OvhSmsChannel constructor.
      *
@@ -30,8 +28,6 @@ class OvhSmsChannel
     {
         $this->client = $client;
     }
-
-    //-------------------------------------------------------------------------
 
     /**
      * Send the given notification.
@@ -58,6 +54,4 @@ class OvhSmsChannel
 
         $sms->send($message->content);
     }
-
-    //-------------------------------------------------------------------------
 }

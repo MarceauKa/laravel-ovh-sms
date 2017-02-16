@@ -40,9 +40,7 @@ class OvhSms
      * @var SmsApi|null
      */
     private $client;
-
-    //-------------------------------------------------------------------------
-
+    
     /**
      * OvhSms constructor.
      *
@@ -73,8 +71,6 @@ class OvhSms
              ->createClient();
     }
 
-    //-------------------------------------------------------------------------
-
     /**
      * Load API credentials from Laravel config.
      *
@@ -90,8 +86,6 @@ class OvhSms
 
         return $this;
     }
-
-    //-------------------------------------------------------------------------
 
     /**
      * Load the default SMS account from config.
@@ -111,8 +105,6 @@ class OvhSms
         return $this;
     }
 
-    //-------------------------------------------------------------------------
-
     /**
      * Load the SMS user login from config.
      *
@@ -131,8 +123,6 @@ class OvhSms
         return $this;
     }
 
-    //-------------------------------------------------------------------------
-
     /**
      * Load the default sender.
      *
@@ -150,8 +140,6 @@ class OvhSms
 
         return $this;
     }
-
-    //-------------------------------------------------------------------------
 
     /**
      * Create the SmsApi client.
@@ -205,8 +193,6 @@ class OvhSms
         return $this;
     }
 
-    //-------------------------------------------------------------------------
-
     /**
      * Returns the OVH API Client.
      *
@@ -217,8 +203,6 @@ class OvhSms
     {
         return $this->client;
     }
-
-    //-------------------------------------------------------------------------
 
     /**
      * Shortcut for creating messages.
@@ -249,8 +233,6 @@ class OvhSms
         return $message;
     }
 
-    //-------------------------------------------------------------------------
-
     /**
      * Prepare a new marketing message.
      *
@@ -261,8 +243,6 @@ class OvhSms
     {
         return $this->newMessage($to, true, false);
     }
-
-    //-------------------------------------------------------------------------
 
     /**
      * Send directly a new message.
@@ -278,8 +258,6 @@ class OvhSms
         return $this->newMessage($to, $marketing)->send($message);
     }
 
-    //-------------------------------------------------------------------------
-
     /**
      * Send directly a marketing message.
      *
@@ -292,8 +270,6 @@ class OvhSms
     {
         return $this->newMarketingMessage($to)->send($message);
     }
-
-    //-------------------------------------------------------------------------
 
     /**
      * Dynamic client method call.
@@ -314,6 +290,4 @@ class OvhSms
 
         throw new \BadMethodCallException("Invalid method $method.");
     }
-
-    //-------------------------------------------------------------------------
 }
